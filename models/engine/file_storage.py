@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """Defines the FileStorage class."""
+
 import json
 from models.base_model import BaseModel
+from models.user import User
 import os
 
 class FileStorage:
@@ -28,7 +30,10 @@ class FileStorage:
             with open(FileStorage.__file_path, "r") as f:
                 obj_dict = json.load(f)
                 for key, value in obj_dict.items():
-                    if value["__class__"] == "BaseModel":
+                    cls_name = value.get("__class__")
+                    if cls_name == "BaseModel":
                         FileStorage.__objects[key] = BaseModel(**value)
+                    elif cls_name == "User":
+                        FileStorage.__objects[key] = User(**value)
         except Exception:
             pass
