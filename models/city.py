@@ -1,7 +1,9 @@
 #!/usr/bin/python3
-"""Defines the City class."""
+"""doc"""
 from models.base_model import BaseModel
 
+
 class City(BaseModel):
-    state_id = ""
+    """city class"""
     name = ""
+    state_id = ""

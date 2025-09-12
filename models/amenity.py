@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-"""Defines the Amenity class."""
+"""doc"""
 from models.base_model import BaseModel
 
+
 class Amenity(BaseModel):
+    """amenity class"""
     name = ""
