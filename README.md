@@ -1,5 +1,3 @@
-
-
 # alu-AirBnB_clone
 
 This is a simple clone of the AirBnB project for ALU. The goal is to build a basic version of AirBnB using Python, with a command-line interpreter to manage different objects like users, places, and more.
