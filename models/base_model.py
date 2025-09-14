@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """BaseModel for all other classes"""
 
@@ -8,7 +7,6 @@ import models
 
 
 class BaseModel:
-
     def __init__(self, *args, **kwargs):
         """constructor method for the class"""
         if kwargs:
