@@ -25,11 +25,23 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         """EOF command to exit the program."""
+        print()
         return True
 
     def emptyline(self):
         """Override emptyline method to do nothing on empty line."""
         pass
+
+    def default(self, line):
+        """Handle unrecognized commands."""
+        pass
+
+    def parseline(self, line):
+        """Parse the line into command and args, handling whitespace properly."""
+        line = line.strip()
+        if not line:
+            return None, None, line
+        return super().parseline(line)
 
     def help_quit(self):
         """Help documentation for quit command."""
