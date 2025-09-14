@@ -2,7 +2,7 @@
 """BaseModel module for AirBnB clone project."""
 import uuid
 from datetime import datetime
-from models import storage
+
 
 class BaseModel:
     """Defines all common attributes/methods for other classes."""
@@ -17,6 +17,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            from models import storage
             storage.new(self)
 
     def __str__(self):
@@ -24,6 +25,7 @@ class BaseModel:
 
     def save(self):
         """Updates the public instance attribute updated_at with current datetime and saves to storage."""
+        from models import storage
         self.updated_at = datetime.now()
         storage.save()
 
