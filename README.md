@@ -1,21 +1,29 @@
 
+
 # alu-AirBnB_clone
 
-This project is my own version of the AirBnB clone for ALU.
+This is a simple clone of the AirBnB project for ALU. The goal is to build a basic version of AirBnB using Python, with a command-line interpreter to manage different objects like users, places, and more.
 
-## What this project is about
-I built a basic version of AirBnB using Python. It comes with a command-line interface that lets you create, show, update, and delete different objects like users, places, and more.
+## Project Description
 
-## How to run it
-1. Make sure Python 3 is installed on your computer.
-2. Open your terminal or command prompt.
-3. Run this command:
+This project is part of my ALU coursework. It helped me learn about object-oriented programming, file storage, and building a simple command interpreter in Python.
+
+## Command Interpreter
+
+The command interpreter lets you create, show, update, and delete objects. It works in interactive mode (with a prompt) or non-interactive mode (by passing commands as arguments).
+
+### How to Start
+
+1. Make sure you have Python 3 installed.
+2. Open a terminal in the project folder.
+3. Start the interpreter with:
    ```
    python console.py
    ```
 
-## How it works
-When you see `(hbnb)` in your terminal, you can type commands such as:
+### How to Use
+
+When you see the prompt `(hbnb)`, you can type commands like:
 - `create User`
 - `show User <id>`
 - `destroy User <id>`
@@ -23,13 +31,17 @@ When you see `(hbnb)` in your terminal, you can type commands such as:
 - `update User <id> name "John"`
 - `quit` (to exit)
 
-## Example usage
+### Examples
+
 ```
+$ python console.py
 (hbnb) create User
 (hbnb) show User 1234-5678
 (hbnb) all User
+(hbnb) update User 1234-5678 first_name "Betty"
 (hbnb) quit
 ```
 
-## Credits
-Check the AUTHORS file for everyone who worked on this project.
+## Contributors
+
+See the AUTHORS file for a list of contributors.
