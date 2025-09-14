@@ -3,6 +3,22 @@
 import cmd
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+
+classes = {
+    'BaseModel': BaseModel,
+    'User': User,
+    'State': State,
+    'City': City,
+    'Amenity': Amenity,
+    'Place': Place,
+    'Review': Review
+}
 
 class HBNBCommand(cmd.Cmd):
     """Command processor for the AirBnB clone."""
@@ -21,14 +37,14 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel, saves it, and prints the id."""
+        """Creates a new instance of a class, saves it, and prints the id."""
         if not arg:
             print("** class name missing **")
             return
-        if arg != "BaseModel":
+        if arg not in classes:
             print("** class doesn't exist **")
             return
-        obj = BaseModel()
+        obj = classes[arg]()
         obj.save()
         print(obj.id)
 
@@ -38,13 +54,13 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        if args[0] != "BaseModel":
+        if args[0] not in classes:
             print("** class doesn't exist **")
             return
         if len(args) < 2:
             print("** instance id missing **")
             return
-        key = f"BaseModel.{args[1]}"
+        key = f"{args[0]}.{args[1]}"
         objs = storage.all()
         if key not in objs:
             print("** no instance found **")
@@ -57,13 +73,13 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        if args[0] != "BaseModel":
+        if args[0] not in classes:
             print("** class doesn't exist **")
             return
         if len(args) < 2:
             print("** instance id missing **")
             return
-        key = f"BaseModel.{args[1]}"
+        key = f"{args[0]}.{args[1]}"
         objs = storage.all()
         if key not in objs:
             print("** no instance found **")
@@ -74,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Prints all string representations of all instances or of a class."""
         objs = storage.all()
-        if arg and arg != "BaseModel":
+        if arg and arg not in classes:
             print("** class doesn't exist **")
             return
         result = []
@@ -89,13 +105,13 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        if args[0] != "BaseModel":
+        if args[0] not in classes:
             print("** class doesn't exist **")
             return
         if len(args) < 2:
             print("** instance id missing **")
             return
-        key = f"BaseModel.{args[1]}"
+        key = f"{args[0]}.{args[1]}"
         objs = storage.all()
         if key not in objs:
             print("** no instance found **")
