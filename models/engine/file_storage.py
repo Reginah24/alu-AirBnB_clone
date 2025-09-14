@@ -1,3 +1,4 @@
+
 #!/usr/bin/python3
 """Defines the FileStorage class."""
 
@@ -10,6 +11,7 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 import os
+
 
 class FileStorage:
     """Serializes instances to a JSON file and deserializes back to instances."""

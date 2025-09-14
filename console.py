@@ -1,72 +1,78 @@
+
 #!/usr/bin/python3
-"""command line interpreter"""
+"""Command line interpreter for AirBnB clone"""
+
 import cmd
 import models
 
 
 class HBNBCommand(cmd.Cmd):
-    """class for the console, inheriting from cmd.Cmd"""
+    """Class for the console, inheriting from cmd.Cmd"""
     prompt = '(hbnb)'
 
     def do_quit(self, arg):
-        """command for exiting the program."""
+        """Exit the program."""
         return True
 
     def do_EOF(self, arg):
-        """Exiting the program with EOF (Ctrl+D)"""
+        """Exit the program with EOF (Ctrl+D)."""
         return True
 
     def emptyline(self):
-        """Doing nothing on an empty line."""
+        """Do nothing on an empty line."""
         pass
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel"""
+        """Creates a new instance of BaseModel or other class."""
         if not arg:
             print("** class name missing **")
-        else:
-            try:
-                instance = models.dict_classes[arg]()
-                instance.save()
-                print(instance.id)
-            except:
-                print("** class doesn't exist **")
+            return
+        if arg not in models.dict_classes:
+            print("** class doesn't exist **")
+            return
+        instance = models.dict_classes[arg]()
+        instance.save()
+        print(instance.id)
 
     def do_show(self, arg):
-        """Shows the string representation of an instance"""
+        """Shows the string representation of an instance."""
         args = arg.split()
         if not args:
             print("** class name missing **")
-        elif args[0] not in models.dict_classes:
+            return
+        if args[0] not in models.dict_classes:
             print("** class doesn't exist **")
-        elif len(args) < 2:
+            return
+        if len(args) < 2:
             print("** instance id missing **")
+            return
+        instance_key = args[0] + "." + args[1]
+        if instance_key in models.storage.all():
+            print(models.storage.all()[instance_key])
         else:
-            instance_key = args[0] + "." + args[1]
-            if instance_key in models.storage.all():
-                print(models.storage.all()[instance_key])
-            else:
-                print("** no instance found **")
+            print("** no instance found **")
 
     def do_destroy(self, arg):
-        """Deletes an instance based on the class name and id"""
+        """Deletes an instance based on the class name and id."""
         args = arg.split()
         if not args:
             print("** class name missing **")
-        elif args[0] not in models.dict_classes:
+            return
+        if args[0] not in models.dict_classes:
             print("** class doesn't exist **")
-        elif len(args) < 2:
+            return
+        if len(args) < 2:
             print("** instance id missing **")
+            return
+        instance_key = args[0] + "." + args[1]
+        if instance_key in models.storage.all():
+            del models.storage.all()[instance_key]
+            models.storage.save()
         else:
-            instance_key = args[0] + "." + args[1]
-            if instance_key in models.storage.all():
-                del models.storage.all()[instance_key]
-                models.storage.save()
-            else:
-                print("** no instance found **")
+            print("** no instance found **")
 
     def do_all(self, arg):
-        """Shows all instances"""
+        """Shows all instances, or all instances of a class."""
         args = arg.split()
         if not arg:
             for value in models.storage.all().values():
@@ -79,28 +85,31 @@ class HBNBCommand(cmd.Cmd):
                     print(str(value))
 
     def do_update(self, arg):
-        """Updates an instance based on class name and id"""
+        """Updates an instance based on class name and id."""
         args = arg.split()
         if not args:
             print("** class name missing **")
-        elif args[0] not in models.dict_classes:
+            return
+        if args[0] not in models.dict_classes:
             print("** class doesn't exist **")
-        elif len(args) < 2:
+            return
+        if len(args) < 2:
             print("** instance id missing **")
-        elif len(args) < 3:
+            return
+        if len(args) < 3:
             print("** attribute name missing **")
-        elif len(args) < 4:
+            return
+        if len(args) < 4:
             print("** value missing **")
+            return
+        instance_key = args[0] + "." + args[1]
+        if instance_key in models.storage.all():
+            attr_name = args[2]
+            attr_value = args[3].strip('"')
+            setattr(models.storage.all()[instance_key], attr_name, attr_value)
+            models.storage.save()
         else:
-            instance_key = args[0] + "." + args[1]
-            if instance_key in models.storage.all():
-                attr_name = args[2]
-                attr_value = args[3].strip('"')
-                setattr(
-                    models.storage.all()[instance_key], attr_name, attr_value)
-                models.storage.save()
-            else:
-                print("** no instance found **")
+            print("** no instance found **")
 
 
 if __name__ == "__main__":
