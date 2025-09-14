@@ -1,45 +1,42 @@
 # alu-AirBnB_clone
 
-This is a simple clone of the AirBnB project for ALU. The goal is to build a basic version of AirBnB using Python, with a command-line interpreter to manage different objects like users, places, and more.
-
 ## Project Description
-
-This project is part of my ALU coursework. It helped me learn about object-oriented programming, file storage, and building a simple command interpreter in Python.
+This project is a simplified clone of the AirBnB web application, developed as part of the ALU software engineering curriculum. It aims to build a basic command-line interface (CLI) for managing objects that represent AirBnB entities such as users, places, amenities, and more. The project demonstrates object-oriented programming, data serialization, and persistence using JSON.
 
 ## Command Interpreter
-
-The command interpreter lets you create, show, update, and delete objects. It works in interactive mode (with a prompt) or non-interactive mode (by passing commands as arguments).
+The command interpreter is a custom shell that allows you to create, show, update, and destroy objects interactively or in non-interactive mode. It is built using Python's `cmd` module.
 
 ### How to Start
+To start the command interpreter, run:
 
-1. Make sure you have Python 3 installed.
-2. Open a terminal in the project folder.
-3. Start the interpreter with:
-   ```
-   python console.py
-   ```
+```bash
+python console.py
+```
 
 ### How to Use
+Once started, you will see the prompt `(hbnb)`. You can enter commands such as:
 
-When you see the prompt `(hbnb)`, you can type commands like:
-- `create User`
-- `show User <id>`
-- `destroy User <id>`
-- `all User`
-- `update User <id> name "John"`
-- `quit` (to exit)
+- `create <ClassName>`: Creates a new instance of a class (e.g., BaseModel, User) and prints its id.
+- `show <ClassName> <id>`: Shows the string representation of an instance.
+- `destroy <ClassName> <id>`: Deletes an instance.
+- `all [<ClassName>]`: Shows all instances, or all instances of a class.
+- `update <ClassName> <id> <attribute> <value>`: Updates an instance's attribute.
+- `quit` or `EOF`: Exits the interpreter.
 
 ### Examples
-
 ```
-$ python console.py
-(hbnb) create User
-(hbnb) show User 1234-5678
-(hbnb) all User
-(hbnb) update User 1234-5678 first_name "Betty"
+(hbnb) create BaseModel
+b6a6e15c-c67d-4312-9a75-9d084935e579
+(hbnb) show BaseModel b6a6e15c-c67d-4312-9a75-9d084935e579
+[BaseModel] (b6a6e15c-c67d-4312-9a75-9d084935e579) {...}
+(hbnb) update BaseModel b6a6e15c-c67d-4312-9a75-9d084935e579 name "My First Model"
+(hbnb) all BaseModel
+["[BaseModel] (b6a6e15c-c67d-4312-9a75-9d084935e579) {...}"]
 (hbnb) quit
 ```
 
-## Contributors
+## Authors
+See the `AUTHORS` file for a list of contributors.
 
-See the AUTHORS file for a list of contributors.
+---
+This project is for educational purposes only.
